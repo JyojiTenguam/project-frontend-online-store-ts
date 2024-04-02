@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [products] = useState([]);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const searchProducts = async () => {
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +26,24 @@ function App() {
           Learn React
         </a>
       </header>
+      <div className="search-container">
+        <input
+          type="text"
+          value={ searchTerm }
+          onChange={ handleSearchChange }
+          placeholder="Digite o termo de pesquisa"
+        />
+        <button onClick={ searchProducts }>Buscar</button>
+      </div>
+      <div className="product-list">
+        {products.length === 0 ? (
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+        ) : (
+          <p>Lista de produtos...</p>
+        )}
+      </div>
     </div>
   );
 }
