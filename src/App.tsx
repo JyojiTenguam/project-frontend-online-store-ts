@@ -1,6 +1,8 @@
+import { Routes, Route, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ShoppingCartPage from './components/ShoppingCartPage';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -44,6 +46,12 @@ function App() {
           <p>Lista de produtos...</p>
         )}
       </div>
+      <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        Ir para o Carrinho de Compras
+      </Link>
+      <Routes>
+        <Route path="/shopping-cart" element={ <ShoppingCartPage /> } />
+      </Routes>
     </div>
   );
 }
