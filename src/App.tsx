@@ -1,12 +1,31 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ShoppingCartPage from './components/ShoppingCartPage';
 
+interface Category {
+  id: string;
+  name: string;
+}
+
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [products] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('https://api.mercadolibre.com/sites/MLB/categories');
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('Erro ao obter categorias:', error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -28,6 +47,14 @@ function App() {
           Learn React
         </a>
       </header>
+      <div className="category-list">
+        <h2>Categorias</h2>
+        <ul>
+          {categories.map((category) => (
+            <li key={ category.id } data-testid="category">{category.name}</li>
+          ))}
+        </ul>
+      </div>
       <div className="search-container">
         <input
           type="text"
