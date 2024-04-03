@@ -13,6 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
+    "typescript": "^4.4.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,11 +43,11 @@
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react-swc": "^3.1.0",
     "@vitest/coverage-c8": "^0.30.1",
+    "eslint": "^8.57.0",
     "jsdom": "^21.1.0",
     "stylelint": "^14.16.1",
     "stylelint-config-standard": "^28.0.0",
     "stylelint-order": "^5.0.0",
-    "typescript": "^5.0.4",
     "vite": "^4.1.1",
     "vitest": "^0.30.1"
   }

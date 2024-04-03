@@ -26,7 +26,6 @@ function App() {
     };
     fetchCategories();
   }, []);
-  
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -51,7 +50,7 @@ function App() {
       <div className="category-list">
         <h2>Categorias</h2>
         <ul>
-          {categories.map(category => (
+          {categories.map((category) => (
             <li key={ category.id } data-testid="category">{category.name}</li>
           ))}
         </ul>
