@@ -1,3 +1,4 @@
+"ignorePatterns": ["dist/**/*"],
 src/setupTests.js
 src/serviceWorker.js
 src/index.js
