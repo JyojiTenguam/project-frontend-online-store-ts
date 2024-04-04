@@ -49,20 +49,17 @@ function App() {
     }
   };
 
+  const handleCategoryClick = async (categoryId: string) => {
+    try {
+      const data = await getProductsFromCategoryAndQuery(categoryId, '');
+      setProducts(data.results);
+    } catch (error) {
+      console.error('Erro ao buscar produtos da categoria:', error);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
       <div className="search-container">
         <input
           type="text"
@@ -75,7 +72,13 @@ function App() {
       </div>
       <div className="product-list">
         {categories.map((category) => (
-          <button key={ category.id } data-testid="category">{ category.name }</button>
+          <button
+            key={ category.id }
+            onClick={ () => handleCategoryClick(category.id) }
+            data-testid="category"
+          >
+            { category.name }
+          </button>
         ))}
         {products.length === 0 ? (
           <p
