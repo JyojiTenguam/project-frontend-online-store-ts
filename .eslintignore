@@ -3,4 +3,3 @@ src/serviceWorker.js
 src/index.js
 src/__tests__/*
 src/__mocks__/*
-dist/
