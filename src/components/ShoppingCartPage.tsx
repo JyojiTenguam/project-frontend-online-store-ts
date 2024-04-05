@@ -3,14 +3,7 @@ import { Product } from '../types';
 
 function ShoppingCartPage() {
   const storedProducts = JSON.parse(localStorage.getItem('products') || '[]');
-  // const itemCart = (addProduct: Product) => {
-  //   const existingProduct = storedProducts
-  //     .find((product: Product) => product.id === addProduct.id);
-  //   if (!existingProduct) {
-  //     const cartItens = [...storedProducts, addProduct];
-  //     localStorage.setItem('products', JSON.stringify(cartItens));
-  //   }
-  // };
+
   return (
     <div>
 
