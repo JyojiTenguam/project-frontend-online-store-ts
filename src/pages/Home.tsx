@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import { Category, Product } from '../types';
 
-export interface Category {
-  id: string;
-  name: string;
-}
-
-export interface Product {
-  id: string;
-  title: string;
-  name: string;
-  thumbnail: string;
-  price: number;
-}
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
@@ -53,6 +42,25 @@ export default function Home() {
       console.error('Erro ao buscar produtos da categoria:', error);
     }
   };
+  const handleAddClick = async (
+    id: string,
+    title: string,
+    thumbnail: string,
+    price: number,
+  ) => {
+    const existingProductsJSON = localStorage.getItem('products');
+    let existingProducts: any[] = [];
+
+    if (existingProductsJSON) {
+      existingProducts = JSON.parse(existingProductsJSON);
+    }
+
+    const newProduct = { id, title, thumbnail, price };
+    existingProducts.push(newProduct);
+
+    localStorage.setItem('products', JSON.stringify(existingProducts));
+  };
+
   return (
     <>
       <div className="search-container">
@@ -92,6 +100,17 @@ export default function Home() {
                 <img src={ product.thumbnail } alt={ product.title } />
               </Link>
               <p>{`R$${product.price}`}</p>
+              <button
+                onClick={ () => handleAddClick(
+                  product.id,
+                  product.title,
+                  product.thumbnail,
+                  product.price,
+                ) }
+                data-testid="product-add-to-cart"
+              >
+                Adcionar ao carrinho
+              </button>
             </div>
           ))
         )}
