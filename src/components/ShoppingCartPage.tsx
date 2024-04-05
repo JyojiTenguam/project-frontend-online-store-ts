@@ -15,6 +15,7 @@ function ShoppingCartPage() {
     <div>
 
       <h1>Carrinho de Compras</h1>
+
       {storedProducts.map((product: Product) => (
 
         <div key={ product.id }>
