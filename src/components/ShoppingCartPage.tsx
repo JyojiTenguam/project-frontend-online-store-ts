@@ -14,6 +14,8 @@ function ShoppingCartPage() {
   return (
     <div>
 
+      <h1>Carrinho de Compras</h1>
+
       {storedProducts.map((product: Product) => (
 
         <div key={ product.id }>
@@ -26,7 +28,10 @@ function ShoppingCartPage() {
           <p data-testid="shopping-cart-product-quantity">{storedProducts.length}</p>
 
         </div>))}
+      <div data-testid="shopping-cart-empty-message">
+        Seu carrinho está vazio.
 
+      </div>
     </div>
   );
 }
