@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Product } from '../types';
 import { getProductById } from '../services/api';
 
 function ProductDetails() {
-  const [product, setProduct] = useState<Product>();
+  const [products, setProduct] = useState<Product>();
   const { id } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -16,55 +15,34 @@ function ProductDetails() {
     fetchProduct();
   }, [id]);
 
-  const handleAddClick = async (
-    title: string,
-    thumbnail: string,
-    price: number,
-  ) => {
-    const existingProductsJSON = localStorage.getItem('products');
-    let existingProducts: any[] = [];
-
-    if (existingProductsJSON) {
-      existingProducts = JSON.parse(existingProductsJSON);
-    }
-
-    const newProduct = { id, title, thumbnail, price };
-    existingProducts.push(newProduct);
-
-    localStorage.setItem('products', JSON.stringify(existingProducts));
+  const addToCart = (product: Product) => {
+    const updatedCart = [...(JSON.parse(localStorage.getItem('cart')
+    || '[]')), { ...product, quantity: 1 }];
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   return (
     <div>
-      {product && (
+      {products && (
         <div>
-          <h4 data-testid="product-detail-name">{product.title}</h4>
+          <h4 data-testid="product-detail-name">{products.title}</h4>
           <img
-            src={ product.thumbnail }
-            alt={ product.title }
+            src={ products.thumbnail }
+            alt={ products.title }
             data-testid="product-detail-image"
           />
-          <p data-testid="product-detail-price">{`R$ ${product.price}`}</p>
-          <p>
-            <button
-              data-testid="shopping-cart-button"
-              onClick={ () => navigate('/shopping-cart') }
-            >
-              Carrinho de Compras
+          <p data-testid="product-detail-price">{`R$ ${products.price}`}</p>
+          <button
+            onClick={ () => addToCart(products) }
+            data-testid="product-detail-add-to-cart"
+          >
+            Adicionar ao Carrinho
+          </button>
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            <button>
+              Carrinho
             </button>
-          </p>
-          <p>
-            <button
-              data-testid="product-detail-add-to-cart"
-              onClick={ () => handleAddClick(
-                product.title,
-                product.thumbnail,
-                product.price,
-              ) }
-            >
-              Adicionar ao Carrinho
-            </button>
-          </p>
+          </Link>
         </div>
       )}
     </div>
