@@ -51,6 +51,9 @@ export default function Home() {
   };
   return (
     <>
+      <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        Ir para o Carrinho de Compras
+      </Link>
       <div className="search-container">
         <input
           type="text"
@@ -98,9 +101,6 @@ export default function Home() {
           ))
         )}
       </div>
-      <Link to="/shopping-cart" data-testid="shopping-cart-button">
-        Ir para o Carrinho de Compras
-      </Link>
     </>
   );
 }
