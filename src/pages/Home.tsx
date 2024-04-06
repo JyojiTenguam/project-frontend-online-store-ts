@@ -7,6 +7,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [cart, setCart] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -42,25 +43,12 @@ export default function Home() {
       console.error('Erro ao buscar produtos da categoria:', error);
     }
   };
-  const handleAddClick = async (
-    id: string,
-    title: string,
-    thumbnail: string,
-    price: number,
-  ) => {
-    const existingProductsJSON = localStorage.getItem('products');
-    let existingProducts: any[] = [];
 
-    if (existingProductsJSON) {
-      existingProducts = JSON.parse(existingProductsJSON);
-    }
-
-    const newProduct = { id, title, thumbnail, price };
-    existingProducts.push(newProduct);
-
-    localStorage.setItem('products', JSON.stringify(existingProducts));
+  const addToCart = (product: Product) => {
+    const updatedCart = [...cart, { ...product, quantity: 1 }];
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
-
   return (
     <>
       <Link to="/shopping-cart" data-testid="shopping-cart-button">
@@ -104,15 +92,10 @@ export default function Home() {
               </Link>
               <p>{`R$${product.price}`}</p>
               <button
-                onClick={ () => handleAddClick(
-                  product.id,
-                  product.title,
-                  product.thumbnail,
-                  product.price,
-                ) }
+                onClick={ () => addToCart(product) }
                 data-testid="product-add-to-cart"
               >
-                Adcionar ao carrinho
+                Adicionar ao Carrinho
               </button>
             </div>
           ))
