@@ -15,6 +15,7 @@ Este projeto é um aplicativo de loja online desenvolvido em React com TypeScrip
 - [Como Rodar o Projeto](#-como-rodar-o-projeto)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
 - [Autores](#-autores)
+- [Em Desenvolvimento Contínuo](#-em-desenvolvimento-contínuo)
 
 ## 💡 Sobre
 
@@ -80,18 +81,66 @@ A aplicação oferece uma interface de loja online para visualizar produtos, fil
 
 ```bash
 ├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   └── ...
 ├── src/
 │   ├── components/
-│   ├── context/
-│   ├── hooks/
-│   ├── pages/
+│   │   ├── HeaderComponent.tsx
+│   │   ├── FooterComponent.tsx
+│   │   ├── ProductCardComponent.tsx
+│   │   └── ...
+│   ├── containers/
+│   │   ├── AppContainer.tsx
+│   │   ├── ProductListContainer.tsx
+│   │   └── ...
+│   ├── models/
+│   │   ├── Product.ts
+│   │   ├── User.ts
+│   │   └── ...
 │   ├── services/
-│   └── utils/
-├── cypress/
+│   │   ├── ProductService.ts
+│   │   ├── UserService.ts
+│   │   └── ...
+│   ├── store/
+│   │   ├── store.ts
+│   │   ├── reducers/
+│   │   │   ├── productReducer.ts
+│   │   │   ├── userReducer.ts
+│   │   │   └── ...
+│   │   └── ...
+│   ├── utils/
+│   │   ├── api.ts
+│   │   ├── constants.ts
+│   │   └── ...
+│   ├── App.tsx
+│   ├── index.tsx
+│   └── ...
+├── tests/
+│   ├── components/
+│   │   ├── HeaderComponent.test.tsx
+│   │   ├── FooterComponent.test.tsx
+│   │   └── ...
+│   ├── containers/
+│   │   ├── AppContainer.test.tsx
+│   │   ├── ProductListContainer.test.tsx
+│   │   └── ...
+│   └── ...
+├── .gitignore
 ├── package.json
-└── tsconfig.json
+├── README.md
+├── tsconfig.json
+└── ...
 ```
 
-## 👤 Autor
+Este projeto foi desenvolvido em grupo pelos estudantes da **Turma 39** da **Trybe**, utilizando práticas de colaboração e desenvolvimento ágil.
 
-Este projeto foi desenvolvido como parte do curso de Desenvolvimento Web da Trybe, por Jyoji Tenguam.
+- [Jonathan Jyoji Tenguam](https://github.com/JyojiTenguam)
+- [Claudio Meira](https://github.com/KCK88)
+- [David Augusto](https://github.com/devlmdavid)
+- [Diego Rodrigues Cardoso](https://github.com/diegorc24)
+
+
+## 🚧 Em Desenvolvimento Contínuo
+
+Apesar do projeto estar funcional, existem pontos que desejo aprimorar, principalmente relacionados à adoção do **Tailwind CSS**.
